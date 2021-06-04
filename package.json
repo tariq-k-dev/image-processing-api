@@ -4,7 +4,7 @@
   "description": "Upload, resize, and save an image to common sizes used on web sites",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "node dist/index.js",
     "lint": "eslint . --ext .ts",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "build": "npx tsc",
