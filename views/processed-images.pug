@@ -1,0 +1,17 @@
+extends layout
+
+block layout-content
+  header(class="jumbotron bg-primary")
+    h1 #{h1Text}
+    p Upload and resize an image to get the most common sizes used for the web
+    a(href="/")
+      img(src="/images/blocks.png", alt="vector blocks stacked inside bigger block")
+  div(class="center")
+    <input id="home-btn" type="button" onclick="location.href='/';" value="Upload An Image" />
+    <input id="zip-btn" type="button" onclick="location.href='/zip-download';" value="Download Images" />
+  div(class="center")
+    ul(id="generated-images")
+      each imgUrl in imgUrls
+        li
+          img(class="mid-size-img" src=imgUrl alt=imgUrl)
+          p #{imgUrl.split('/').slice(-1)}
