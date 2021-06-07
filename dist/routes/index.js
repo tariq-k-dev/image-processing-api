@@ -51,6 +51,14 @@ var imgUrl = '';
 var folderName = '';
 var storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
+        // clear output-images folder for each new image that is input
+        try {
+            fs_1.default.rmdirSync('dist/output-images', { recursive: true });
+            fs_1.default.mkdirSync('dist/output-images', { recursive: true });
+        }
+        catch (err) {
+            console.error('Error deleting output-images folder:', err);
+        }
         folderName = file.originalname.split('.')[0];
         var folderPath = path_1.default.join('dist', 'output-images', folderName);
         if (!fs_1.default.existsSync(folderPath)) {
@@ -66,17 +74,6 @@ var storage = multer_1.default.diskStorage({
 var upload = multer_1.default({ storage: storage });
 /* GET home page. */
 routes.get('/', function (req, res) {
-    try {
-        fs_1.default.rmdirSync('dist/output-images', { recursive: true });
-        fs_1.default.mkdir('dist/output-images', { recursive: true }, function (err) {
-            if (err) {
-                throw err;
-            }
-        });
-    }
-    catch (err) {
-        console.error('Error deleting output-images folder:', err);
-    }
     res.render('index', {
         title: 'Image Sizer',
         h1Text: 'Web Image Size Generator',

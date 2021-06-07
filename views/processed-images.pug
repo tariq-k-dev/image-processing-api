@@ -14,4 +14,4 @@ block layout-content
       each imgUrl in imgUrls
         li
           img(class="mid-size-img" src=imgUrl alt=imgUrl)
-          p #{imgUrl.split('/').slice(-1)}
+          p #{imgUrl.includes('\\') ? imgUrl.split('\\').slice(-1) : imgUrl.split('/').slice(-1)}
