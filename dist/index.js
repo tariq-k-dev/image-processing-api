@@ -18,7 +18,7 @@ app.use('/images', express_1.default.static('images'));
 app.use(index_1.default);
 app.set('../views', path_1.default.join(__dirname, '../views'));
 app.set('view engine', 'pug');
-app.listen(PORT, 'localhost', function () {
+app.listen(PORT, function () {
     console.log("Listening at " + (HOST + PORT));
 });
 exports.default = app;

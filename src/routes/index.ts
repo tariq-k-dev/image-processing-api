@@ -52,7 +52,7 @@ routes.post(
   '/processed-images',
   upload.single('imageupload'),
   async (req, res) => {
-    const resizedImgs: string[] | null = await imgResize(imgUrl);
+    const resizedImgs: string[] | null = imgResize(imgUrl);
 
     // give a little delay for image to be processed
     setTimeout(() => {
@@ -63,7 +63,7 @@ routes.post(
           'Upload and resize an image to get the most common sizes used for the web',
         imgUrls: resizedImgs,
       });
-    }, 600);
+    }, 0);
   }
 );
 
