@@ -93,13 +93,6 @@ const imgResize = (location: string): string[] => {
     }
   }
 
-  if (
-    fs.existsSync(
-      path.join('dist', 'output-images', nameOnly + '_2500.' + fileExt)
-    )
-  ) {
-    console.log('Largest image detected...');
-  }
   return imgSizes;
 };
 

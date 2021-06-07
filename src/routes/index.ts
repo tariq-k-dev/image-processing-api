@@ -48,13 +48,11 @@ routes.get('/', (req, res) => {
 });
 
 // route to display resized images
-routes.post(
-  '/processed-images',
-  upload.single('imageupload'),
-  async (req, res) => {
-    const resizedImgs: string[] | null = imgResize(imgUrl);
+routes.post('/processed-images', upload.single('imageupload'), (req, res) => {
+  const resizedImgs: string[] | null = imgResize(imgUrl);
 
-    await res.render('processed-images', {
+  if (imgResize.length === 7) {
+    res.render('processed-images', {
       title: 'Image Sizer',
       h1Text: 'Web Image Size Generator',
       pText:
@@ -62,7 +60,7 @@ routes.post(
       imgUrls: resizedImgs,
     });
   }
-);
+});
 
 // route to handle zip download of resized images
 routes.get('/zip-download', async (req, res) => {
