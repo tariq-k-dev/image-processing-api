@@ -63,7 +63,7 @@ routes.post(
           'Upload and resize an image to get the most common sizes used for the web',
         imgUrls: resizedImgs,
       });
-    }, 0);
+    }, 1500);
   }
 );
 

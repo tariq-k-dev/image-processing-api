@@ -84,21 +84,17 @@ routes.get('/', function (req, res) {
 routes.post('/processed-images', upload.single('imageupload'), function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var resizedImgs;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, sharp_resize_1.default(imgUrl)];
-            case 1:
-                resizedImgs = _a.sent();
-                // give a little delay for image to be processed
-                setTimeout(function () {
-                    res.render('processed-images', {
-                        title: 'Image Sizer',
-                        h1Text: 'Web Image Size Generator',
-                        pText: 'Upload and resize an image to get the most common sizes used for the web',
-                        imgUrls: resizedImgs,
-                    });
-                }, 600);
-                return [2 /*return*/];
-        }
+        resizedImgs = sharp_resize_1.default(imgUrl);
+        // give a little delay for image to be processed
+        setTimeout(function () {
+            res.render('processed-images', {
+                title: 'Image Sizer',
+                h1Text: 'Web Image Size Generator',
+                pText: 'Upload and resize an image to get the most common sizes used for the web',
+                imgUrls: resizedImgs,
+            });
+        }, 0);
+        return [2 /*return*/];
     });
 }); });
 // route to handle zip download of resized images
