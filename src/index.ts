@@ -27,7 +27,7 @@ app.use(routes);
 app.set('../views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 
-app.listen(PORT, 'localhost', () => {
+app.listen(PORT, () => {
   console.log(`Listening at ${HOST + PORT}`);
 });
 

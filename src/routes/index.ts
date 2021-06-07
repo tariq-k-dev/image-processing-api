@@ -52,18 +52,21 @@ routes.post(
   '/processed-images',
   upload.single('imageupload'),
   async (req, res) => {
-    const resizedImgs: string[] | null = await imgResize(imgUrl);
+    let resizedImgs: string[] | null = [];
 
-    // give a little delay for image to be processed
-    setTimeout(() => {
-      res.render('processed-images', {
-        title: 'Image Sizer',
-        h1Text: 'Web Image Size Generator',
-        pText:
-          'Upload and resize an image to get the most common sizes used for the web',
-        imgUrls: resizedImgs,
-      });
-    }, 600);
+    try {
+      resizedImgs = await imgResize(imgUrl);
+    } catch (err) {
+      console.error('Image resizing error:', err);
+    }
+
+    res.render('processed-images', {
+      title: 'Image Sizer',
+      h1Text: 'Web Image Size Generator',
+      pText:
+        'Upload and resize an image to get the most common sizes used for the web',
+      imgUrls: resizedImgs,
+    });
   }
 );
 
