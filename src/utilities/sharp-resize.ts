@@ -98,8 +98,9 @@ const imgResize = (location: string): string[] => {
       path.join('dist', 'output-images', nameOnly + '_2500.' + fileExt)
     )
   ) {
-    return imgSizes;
+    console.log('Largest image detected...');
   }
+  return imgSizes;
 };
 
 export default imgResize;
