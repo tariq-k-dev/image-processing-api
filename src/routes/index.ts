@@ -55,7 +55,7 @@ routes.post(
     let resizedImgs: string[] | null = [];
 
     try {
-      resizedImgs = imgResize(imgUrl);
+      resizedImgs = await imgResize(imgUrl);
     } catch (err) {
       console.error('Image resizing error:', err);
     }
