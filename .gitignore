@@ -1,2 +1,5 @@
 node_modules/
 output-images/
+npm-debug.log
+.DS_Store
+/*.env
