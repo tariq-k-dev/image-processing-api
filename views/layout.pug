@@ -11,8 +11,8 @@ html
     style
       include ./css/style.css
   body
-    div#root
+    div#root(name="top")
       block layout-content
     footer
       p Tariq Khan | &copy; #{new Date().getFullYear()} |&nbsp;
-        a(href='#') Top
+        a(href='#top') Top

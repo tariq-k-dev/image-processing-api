@@ -30,7 +30,7 @@ Promise.all(promises)
     console.log('Done!', res);
 })
     .catch(function (err) {
-    console.error('Error processing files, let\'s clean it up', err);
+    console.error("Error processing files, let's clean it up: " + err);
     try {
         fs_1.default.unlinkSync('originalFile.jpg');
         fs_1.default.unlinkSync('optimized-500.jpg');

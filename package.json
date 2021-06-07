@@ -4,9 +4,10 @@
   "description": "Upload, resize, and save an image to common sizes used on web sites",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.tx",
     "lint": "eslint . --ext .ts",
-    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "prettier": "prettier --config .prettierrc src/**/*.ts --write",
     "build": "npx tsc",
     "jasmine": "jasmine",
     "test": "npm run build && npm run jasmine"
@@ -58,5 +59,9 @@
     "pug": "^3.0.2",
     "serve-favicon": "^2.5.0",
     "sharp": "^0.28.3"
+  },
+  "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.13"
   }
 }

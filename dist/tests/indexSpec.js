@@ -46,28 +46,32 @@ var index_1 = __importDefault(require("../index"));
 var sharp_resize_1 = __importDefault(require("../utilities/sharp-resize"));
 var request = supertest_1.default(index_1.default);
 describe('Test endpoint response', function () { return __awaiter(void 0, void 0, void 0, function () {
-    var imagesArr;
     return __generator(this, function (_a) {
-        imagesArr = [];
-        beforeEach(function () {
-            if (!fs_1.default.existsSync(path_1.default.resolve('dist', 'output-images', 'The-Subway-Cave-Utah'))) {
-                fs_1.default.mkdir(path_1.default.resolve('dist', 'output-images', 'The-Subway-Cave-Utah'), function (err) {
-                    if (err) {
-                        console.error(err);
-                    }
-                });
+        beforeAll(function () {
+            // empty dist/output-images folder before test
+            fs_1.default.rmdirSync('dist/output-images', { recursive: true });
+            // Create The-Subway-Cave-Utah folder for the test
+            try {
+                fs_1.default.mkdirSync(path_1.default.resolve('dist', 'output-images', 'The-Subway-Cave-Utah'), { recursive: true });
+            }
+            catch (err) {
+                console.error('Error occurred during file and folder setup for test', err);
             }
             var pathToTestImage = path_1.default.resolve('dist', 'test-image', 'The-Subway-Cave-Utah.jpg');
             var pathImgOutput = path_1.default.resolve('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah.jpg');
             try {
-                fs_1.default.copyFile(pathToTestImage, pathImgOutput, function (err) {
-                    if (err)
-                        console.error('Error occurre trying to copy file during the test:', err);
-                });
-                imagesArr = sharp_resize_1.default(pathImgOutput);
+                fs_1.default.copyFileSync(pathToTestImage, pathImgOutput);
             }
             catch (err) {
                 console.error('Error during test trying to copy file:', err);
+            }
+            try {
+                if (fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah.jpg'))) {
+                    sharp_resize_1.default(pathImgOutput);
+                }
+            }
+            catch (err) {
+                console.error('Error occurred during Sharp image resize step...');
             }
         });
         it('get / with status of 200', function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -91,8 +95,30 @@ describe('Test endpoint response', function () { return __awaiter(void 0, void 0
                 }
             });
         }); });
-        it('/processed-image generates 7 images', function () {
-            expect(imagesArr.length).toEqual(7);
+        it('/processed-image generated The-Subway-Cave-Utah_100.jpg', function () {
+            // expect(imagesArr.length).toEqual(7);
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_100.jpg'))).toBeTruthy();
+        });
+        it('/processed-image generated The-Subway-Cave-Utah_300.jpg', function () {
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_300.jpg'))).toBeTruthy();
+        });
+        it('/processed-image generated The-Subway-Cave-Utah_500.jpg', function () {
+            // expect(imagesArr.length).toEqual(7);
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_500.jpg'))).toBeTruthy();
+        });
+        it('/processed-image generated The-Subway-Cave-Utah_750.jpg', function () {
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_750.jpg'))).toBeTruthy();
+        });
+        it('/processed-image generated The-Subway-Cave-Utah_1000.jpg', function () {
+            // expect(imagesArr.length).toEqual(7);
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_1000.jpg'))).toBeTruthy();
+        });
+        it('/processed-image generated The-Subway-Cave-Utah_1500.jpg', function () {
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_1500.jpg'))).toBeTruthy();
+        });
+        it('/processed-image generated The-Subway-Cave-Utah_2500.jpg', function () {
+            // expect(imagesArr.length).toEqual(7);
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_2500.jpg'))).toBeTruthy();
         });
         return [2 /*return*/];
     });
