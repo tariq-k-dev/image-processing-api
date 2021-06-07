@@ -6,6 +6,14 @@ import routes from './routes/index';
 const app = express();
 const PORT = (process.env.PORT as unknown as number) || 3000;
 const HOST = 'http://localhost:';
+const cacheTime = 86400000 * 30;
+
+// caching
+app.use(
+  express.static(path.join(__dirname, 'dist'), {
+    maxAge: cacheTime,
+  })
+);
 
 app.use(favicon(path.resolve('dist', 'images', 'favicon.ico')));
 
