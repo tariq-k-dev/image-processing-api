@@ -54,16 +54,13 @@ routes.post(
   async (req, res) => {
     const resizedImgs: string[] | null = imgResize(imgUrl);
 
-    // give a little delay for image to be processed
-    setTimeout(() => {
-      res.render('processed-images', {
-        title: 'Image Sizer',
-        h1Text: 'Web Image Size Generator',
-        pText:
-          'Upload and resize an image to get the most common sizes used for the web',
-        imgUrls: resizedImgs,
-      });
-    }, 1500);
+    await res.render('processed-images', {
+      title: 'Image Sizer',
+      h1Text: 'Web Image Size Generator',
+      pText:
+        'Upload and resize an image to get the most common sizes used for the web',
+      imgUrls: resizedImgs,
+    });
   }
 );
 

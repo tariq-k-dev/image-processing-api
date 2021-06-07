@@ -93,7 +93,13 @@ const imgResize = (location: string): string[] => {
     }
   }
 
-  return imgSizes;
+  if (
+    fs.existsSync(
+      path.join('dist', 'output-images', nameOnly + '_2500.' + fileExt)
+    )
+  ) {
+    return imgSizes;
+  }
 };
 
 export default imgResize;
