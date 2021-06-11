@@ -21,13 +21,13 @@ var options = {
         res.set('x-timestamp', Date.now().toLocaleString());
     },
 };
-app.use(express_1.default.static('dist', options));
-app.use(index_1.default);
 app.use(serve_favicon_1.default(path_1.default.resolve('dist', 'images', 'favicon.ico')));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.set('../views', path_1.default.join(__dirname, '../views'));
 app.set('view engine', 'pug');
+app.use(express_1.default.static('dist', options));
+app.use(index_1.default);
 app.listen(PORT, function () {
     console.log("Listening at " + (HOST + PORT));
 });

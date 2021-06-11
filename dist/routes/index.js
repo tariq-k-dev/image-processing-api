@@ -73,21 +73,33 @@ routes.get('/', function (req, res) {
     });
 });
 // route to display resized images
-routes.post('/processed-images', upload.single('imageupload'), function (req, res) {
-    var resizedImgs = [];
-    try {
-        resizedImgs = sharp_resize_1.default(imgUrl);
-    }
-    catch (err) {
-        console.error('Image resizing error:', err);
-    }
-    res.render('processed-images', {
-        title: 'Image Sizer',
-        h1Text: 'Web Image Size Generator',
-        pText: 'Upload and resize an image to get the most common sizes used for the web',
-        imgUrls: resizedImgs,
+routes.post('/processed-images', upload.single('imageupload'), function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var resizedImgs, err_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                resizedImgs = [];
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, sharp_resize_1.default(imgUrl)];
+            case 2:
+                resizedImgs = _a.sent();
+                res.render('processed-images', {
+                    title: 'Image Sizer',
+                    h1Text: 'Web Image Size Generator',
+                    pText: 'Upload and resize an image to get the most common sizes used for the web',
+                    imgUrls: resizedImgs,
+                });
+                return [3 /*break*/, 4];
+            case 3:
+                err_1 = _a.sent();
+                console.error('Image resizing error:', err_1);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
     });
-});
+}); });
 // route to handle zip download of resized images
 routes.get('/zip-download', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var pathToImages, uploadDir, zip, i, downloadName, data, dataLength;

@@ -32,7 +32,6 @@ var imgResize = function (location) {
     // check if images already exist, if so use them and do not resize again
     var pathToTestImg = path_1.default.join('dist', 'output-images', nameOnly, nameOnly + '_2500.' + fileExt);
     var testImgExist = fs_1.default.existsSync(pathToTestImg);
-    console.log({ testImgExist: testImgExist });
     if (testImgExist) {
         var images = fs_1.default.readdirSync(path_1.default.join('dist', 'output-images', nameOnly));
         // sort images by size
@@ -53,12 +52,6 @@ var imgResize = function (location) {
         });
     }
     else {
-        console.log('inside else statement');
-        // check that output folder exist
-        if (!fs_1.default.existsSync(outFolder)) {
-            console.log('made output-images folder in sharp-resize.ts');
-            fs_1.default.mkdirSync(outFolder);
-        }
         // Resize original image
         try {
             resizedFile = nameOnly + '_100.' + fileExt;

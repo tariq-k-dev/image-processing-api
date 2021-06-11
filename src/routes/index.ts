@@ -40,23 +40,27 @@ routes.get('/', (req, res) => {
 });
 
 // route to display resized images
-routes.post('/processed-images', upload.single('imageupload'), (req, res) => {
-  let resizedImgs: string[] | null = [];
+routes.post(
+  '/processed-images',
+  upload.single('imageupload'),
+  async (req, res) => {
+    let resizedImgs: string[] | null = [];
 
-  try {
-    resizedImgs = imgResize(imgUrl);
-  } catch (err) {
-    console.error('Image resizing error:', err);
+    try {
+      resizedImgs = await imgResize(imgUrl);
+
+      res.render('processed-images', {
+        title: 'Image Sizer',
+        h1Text: 'Web Image Size Generator',
+        pText:
+          'Upload and resize an image to get the most common sizes used for the web',
+        imgUrls: resizedImgs,
+      });
+    } catch (err) {
+      console.error('Image resizing error:', err);
+    }
   }
-
-  res.render('processed-images', {
-    title: 'Image Sizer',
-    h1Text: 'Web Image Size Generator',
-    pText:
-      'Upload and resize an image to get the most common sizes used for the web',
-    imgUrls: resizedImgs,
-  });
-});
+);
 
 // route to handle zip download of resized images
 routes.get('/zip-download', async (req, res) => {
