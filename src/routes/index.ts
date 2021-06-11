@@ -47,13 +47,15 @@ routes.post('/processed-images', upload.single('imageupload'), (req, res) => {
     resizedImgs = imgResize(imgUrl);
 
     if (resizedImgs.length === 7) {
-      res.render('processed-images', {
-        title: 'Image Sizer',
-        h1Text: 'Web Image Size Generator',
-        pText:
-          'Upload and resize an image to get the most common sizes used for the web',
-        imgUrls: resizedImgs,
-      });
+      setTimeout(() => {
+        res.render('processed-images', {
+          title: 'Image Sizer',
+          h1Text: 'Web Image Size Generator',
+          pText:
+            'Upload and resize an image to get the most common sizes used for the web',
+          imgUrls: resizedImgs,
+        });
+      }, 600);
     }
   } catch (err) {
     console.error('Image resizing error:', err);

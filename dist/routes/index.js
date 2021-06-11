@@ -78,12 +78,14 @@ routes.post('/processed-images', upload.single('imageupload'), function (req, re
     try {
         resizedImgs = sharp_resize_1.default(imgUrl);
         if (resizedImgs.length === 7) {
-            res.render('processed-images', {
-                title: 'Image Sizer',
-                h1Text: 'Web Image Size Generator',
-                pText: 'Upload and resize an image to get the most common sizes used for the web',
-                imgUrls: resizedImgs,
-            });
+            setTimeout(function () {
+                res.render('processed-images', {
+                    title: 'Image Sizer',
+                    h1Text: 'Web Image Size Generator',
+                    pText: 'Upload and resize an image to get the most common sizes used for the web',
+                    imgUrls: resizedImgs,
+                });
+            }, 600);
         }
     }
     catch (err) {

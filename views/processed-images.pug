@@ -13,5 +13,5 @@ block layout-content
     ul(id="generated-images")
       each imgUrl in imgUrls
         li
-          img(class="mid-size-img" src=imgUrl alt=imgUrl)
+          img(src=imgUrl alt=imgUrl)
           p #{imgUrl.includes('\\') ? imgUrl.split('\\').slice(-1) : imgUrl.split('/').slice(-1)}

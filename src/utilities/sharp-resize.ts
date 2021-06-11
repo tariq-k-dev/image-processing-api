@@ -38,11 +38,11 @@ const imgResize = (location: string): string[] => {
   } else {
     // Resize original image
     try {
-      resizedFile = nameOnly + '_100.' + fileExt;
+      resizedFile = nameOnly + '_125.' + fileExt;
       outputFile = path.resolve(path.join(outFolder, nameOnly, resizedFile));
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
-      sharp(location).resize({ width: 100 }).toFile(outputFile);
+      sharp(location).resize({ width: 125, height: 125 }).toFile(outputFile);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
     }
@@ -68,23 +68,13 @@ const imgResize = (location: string): string[] => {
     }
 
     try {
-      resizedFile = nameOnly + '_750.' + fileExt;
-      outputFile = path.join(outFolder, nameOnly, resizedFile);
-      const htmlImages = path.join('output-images', nameOnly, resizedFile);
-      imgSizes.push(htmlImages);
-      sharp(location).resize({ width: 750 }).toFile(outputFile);
-    } catch (error) {
-      console.error('Error occurred trying to resize image with sharp:', error);
-    }
-
-    try {
-      resizedFile = nameOnly + '_1000.' + fileExt;
+      resizedFile = nameOnly + '_800.' + fileExt;
       outputFile = path.join(outFolder, nameOnly, resizedFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
       const format = fileExt as keyof FormatEnum;
       sharp(location)
-        .resize({ width: 1000 })
+        .resize({ width: 800, height: 600 })
         .toFormat(format, {
           quality: 60,
         })
@@ -94,13 +84,13 @@ const imgResize = (location: string): string[] => {
     }
 
     try {
-      resizedFile = nameOnly + '_1500.' + fileExt;
+      resizedFile = nameOnly + '_1080.' + fileExt;
       outputFile = path.join(outFolder, nameOnly, resizedFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
       const format = fileExt as keyof FormatEnum;
       sharp(location)
-        .resize({ width: 1500 })
+        .resize({ width: 1080, height: 1080 })
         .toFormat(format, {
           quality: 60,
         })
@@ -110,16 +100,32 @@ const imgResize = (location: string): string[] => {
     }
 
     try {
-      resizedFile = nameOnly + '_2500.' + fileExt;
+      resizedFile = nameOnly + '_1280.' + fileExt;
+      outputFile = path.join(outFolder, nameOnly, resizedFile);
+      const htmlImages = path.join('output-images', nameOnly, resizedFile);
+      imgSizes.push(htmlImages);
+      const format = fileExt as keyof FormatEnum;
+      sharp(location)
+        .toFormat(format, {
+          quality: 60,
+        })
+        .resize({ width: 1280, height: 720 })
+        .toFile(outputFile);
+    } catch (error) {
+      console.error('Error occurred trying to resize image with sharp:', error);
+    }
+
+    try {
+      resizedFile = nameOnly + '_1920.' + fileExt;
       outputFile = path.join(outFolder, nameOnly, resizedFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       const format = fileExt as keyof FormatEnum;
       imgSizes.push(htmlImages);
       sharp(location)
-        .resize({ width: 2500 })
         .toFormat(format, {
           quality: 60,
         })
+        .resize({ width: 1920, height: 1080 })
         .toFile(outputFile);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
