@@ -37,15 +37,13 @@ var imgResize = function (location) {
         return imgFiles;
     }
     else {
-        // Add fileName to localStorage to use for search for processed images
-        imgCache.set(fileName, fileName);
         // Resize original image
         try {
             resizedFile = nameOnly + '_100.' + fileExt;
             outputFile = path_1.default.resolve(path_1.default.join(outFolder, nameOnly, resizedFile));
-            sharp_1.default(location).resize({ width: 100 }).toFile(outputFile);
             var htmlImages = path_1.default.join('output-images', nameOnly, resizedFile);
             imgSizes.push(htmlImages);
+            sharp_1.default(location).resize({ width: 100 }).toFile(outputFile);
         }
         catch (error) {
             console.error('Error occurred trying to resize image with sharp:', error);
@@ -53,9 +51,9 @@ var imgResize = function (location) {
         try {
             resizedFile = nameOnly + '_300.' + fileExt;
             outputFile = path_1.default.join(outFolder, nameOnly, resizedFile);
-            sharp_1.default(location).resize({ width: 300 }).toFile(outputFile);
             var htmlImages = path_1.default.join('output-images', nameOnly, resizedFile);
             imgSizes.push(htmlImages);
+            sharp_1.default(location).resize({ width: 300 }).toFile(outputFile);
         }
         catch (error) {
             console.error('Error occurred trying to resize image with sharp:', error);
@@ -63,9 +61,9 @@ var imgResize = function (location) {
         try {
             resizedFile = nameOnly + '_500.' + fileExt;
             outputFile = path_1.default.join(outFolder, nameOnly, resizedFile);
-            sharp_1.default(location).resize({ width: 500 }).toFile(outputFile);
             var htmlImages = path_1.default.join('output-images', nameOnly, resizedFile);
             imgSizes.push(htmlImages);
+            sharp_1.default(location).resize({ width: 500 }).toFile(outputFile);
         }
         catch (error) {
             console.error('Error occurred trying to resize image with sharp:', error);
@@ -73,9 +71,9 @@ var imgResize = function (location) {
         try {
             resizedFile = nameOnly + '_750.' + fileExt;
             outputFile = path_1.default.join(outFolder, nameOnly, resizedFile);
-            sharp_1.default(location).resize({ width: 750 }).toFile(outputFile);
             var htmlImages = path_1.default.join('output-images', nameOnly, resizedFile);
             imgSizes.push(htmlImages);
+            sharp_1.default(location).resize({ width: 750 }).toFile(outputFile);
         }
         catch (error) {
             console.error('Error occurred trying to resize image with sharp:', error);
@@ -83,9 +81,15 @@ var imgResize = function (location) {
         try {
             resizedFile = nameOnly + '_1000.' + fileExt;
             outputFile = path_1.default.join(outFolder, nameOnly, resizedFile);
-            sharp_1.default(location).resize({ width: 1000 }).toFile(outputFile);
             var htmlImages = path_1.default.join('output-images', nameOnly, resizedFile);
             imgSizes.push(htmlImages);
+            var format = fileExt;
+            sharp_1.default(location)
+                .resize({ width: 1000 })
+                .toFormat(format, {
+                quality: 60,
+            })
+                .toFile(outputFile);
         }
         catch (error) {
             console.error('Error occurred trying to resize image with sharp:', error);
@@ -93,9 +97,15 @@ var imgResize = function (location) {
         try {
             resizedFile = nameOnly + '_1500.' + fileExt;
             outputFile = path_1.default.join(outFolder, nameOnly, resizedFile);
-            sharp_1.default(location).resize({ width: 1500 }).toFile(outputFile);
             var htmlImages = path_1.default.join('output-images', nameOnly, resizedFile);
             imgSizes.push(htmlImages);
+            var format = fileExt;
+            sharp_1.default(location)
+                .resize({ width: 1500 })
+                .toFormat(format, {
+                quality: 60,
+            })
+                .toFile(outputFile);
         }
         catch (error) {
             console.error('Error occurred trying to resize image with sharp:', error);
@@ -103,9 +113,15 @@ var imgResize = function (location) {
         try {
             resizedFile = nameOnly + '_2500.' + fileExt;
             outputFile = path_1.default.join(outFolder, nameOnly, resizedFile);
-            sharp_1.default(location).resize({ width: 2500 }).toFile(outputFile);
             var htmlImages = path_1.default.join('output-images', nameOnly, resizedFile);
+            var format = fileExt;
             imgSizes.push(htmlImages);
+            sharp_1.default(location)
+                .resize({ width: 2500 })
+                .toFormat(format, {
+                quality: 60,
+            })
+                .toFile(outputFile);
         }
         catch (error) {
             console.error('Error occurred trying to resize image with sharp:', error);

@@ -65,8 +65,8 @@ describe('Test endpoint response', async () => {
   });
 
   // image processing route
-  it('get /processed-images with status of 200', async () => {
-    await request.post('/processed-images').expect(200);
+  it('get /processed-images with status of 200', () => {
+    request.post('/processed-images').expect(200);
   });
 
   it('/processed-image generated The-Subway-Cave-Utah_100.jpg', () => {
