@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
     const folderPath = path.join('dist', 'output-images', folderName);
 
     if (!fs.existsSync(folderPath)) {
-      fs.mkdirSync(folderPath);
+      fs.mkdirSync(folderPath, { recursive: true });
     }
     cb(null, folderPath);
 
