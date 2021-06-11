@@ -54,7 +54,7 @@ var storage = multer_1.default.diskStorage({
         folderName = file.originalname.split('.')[0];
         var folderPath = path_1.default.join('dist', 'output-images', folderName);
         if (!fs_1.default.existsSync(folderPath)) {
-            fs_1.default.mkdirSync(folderPath);
+            fs_1.default.mkdirSync(folderPath, { recursive: true });
         }
         cb(null, folderPath);
         imgUrl = path_1.default.join(folderPath, file.originalname);
