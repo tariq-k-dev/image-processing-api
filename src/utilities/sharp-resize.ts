@@ -1,7 +1,9 @@
 // import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
-import localStorage from 'localStorage';
+import NodeCache from 'node-cache';
+
+const imgCache = new NodeCache();
 
 const imgResize = (location: string): string[] => {
   // if the location string is empty, return empty array
@@ -28,17 +30,14 @@ const imgResize = (location: string): string[] => {
   let outputFile = '';
   const imgSizes: string[] = [];
 
-  // Check to see if images already exist in localStorage
-  if (localStorage.getItem(fileName) !== null) {
-    const storedImages = localStorage;
+  // Check to see if images already exist in cache
+  if (imgCache.get(nameOnly)) {
+    const imgFiles: string[] = imgCache.get(nameOnly) as string[];
 
-    for (const img of Object.values(storedImages)) {
-      if (img !== fileName && String(img).includes(nameOnly))
-        imgSizes.push(img as unknown as string);
-    }
+    return imgFiles;
   } else {
     // Add fileName to localStorage to use for search for processed images
-    localStorage.setItem(fileName, fileName);
+    imgCache.set(fileName, fileName);
     // Resize original image
     try {
       resizedFile = nameOnly + '_100.' + fileExt;
@@ -46,7 +45,6 @@ const imgResize = (location: string): string[] => {
       sharp(location).resize({ width: 100 }).toFile(outputFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
-      localStorage.setItem(htmlImages, htmlImages);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
     }
@@ -57,7 +55,6 @@ const imgResize = (location: string): string[] => {
       sharp(location).resize({ width: 300 }).toFile(outputFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
-      localStorage.setItem(htmlImages, htmlImages);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
     }
@@ -68,7 +65,6 @@ const imgResize = (location: string): string[] => {
       sharp(location).resize({ width: 500 }).toFile(outputFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
-      localStorage.setItem(htmlImages, htmlImages);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
     }
@@ -79,7 +75,6 @@ const imgResize = (location: string): string[] => {
       sharp(location).resize({ width: 750 }).toFile(outputFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
-      localStorage.setItem(htmlImages, htmlImages);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
     }
@@ -90,7 +85,6 @@ const imgResize = (location: string): string[] => {
       sharp(location).resize({ width: 1000 }).toFile(outputFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
-      localStorage.setItem(htmlImages, htmlImages);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
     }
@@ -101,7 +95,6 @@ const imgResize = (location: string): string[] => {
       sharp(location).resize({ width: 1500 }).toFile(outputFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
-      localStorage.setItem(htmlImages, htmlImages);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
     }
@@ -112,11 +105,13 @@ const imgResize = (location: string): string[] => {
       sharp(location).resize({ width: 2500 }).toFile(outputFile);
       const htmlImages = path.join('output-images', nameOnly, resizedFile);
       imgSizes.push(htmlImages);
-      localStorage.setItem(htmlImages, htmlImages);
     } catch (error) {
       console.error('Error occurred trying to resize image with sharp:', error);
     }
   }
+
+  // cache the images with file name as key
+  imgCache.set(nameOnly, imgSizes);
 
   return imgSizes;
 };
