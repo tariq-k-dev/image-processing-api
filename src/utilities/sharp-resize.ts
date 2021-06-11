@@ -36,6 +36,8 @@ const imgResize = (location: string): string[] => {
   );
   const testImgExist = fs.existsSync(pathToTestImg);
 
+  console.log({ testImgExist });
+
   if (testImgExist) {
     const images = fs.readdirSync(path.join('dist', 'output-images', nameOnly));
     // sort images by size
@@ -56,6 +58,11 @@ const imgResize = (location: string): string[] => {
       }
     });
   } else {
+    // check that output folder exist
+    if (!fs.existsSync(outFolder)) {
+      fs.mkdirSync(outFolder);
+    }
+
     // Resize original image
     try {
       resizedFile = nameOnly + '_100.' + fileExt;
