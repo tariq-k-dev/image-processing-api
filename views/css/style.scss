@@ -21,8 +21,7 @@ body {
 
 #root {
   min-height: 95vh;
-  // position: relative;
-  // width: 100%;
+  min-width: fit-content;
 }
 
 .jumbotron {
@@ -72,7 +71,7 @@ form {
       text-align: center;
 
       #upload-div {
-        width: 60%;
+        width: fit-content;
         margin: auto;
       }
 
@@ -80,7 +79,6 @@ form {
         background-color: #e0eeee;
         border: 2px solid #000;
         border-radius: 5px;
-        width: auto;
         padding: 0.25rem 0.75rem;
         margin: 0 auto;
       }
@@ -166,20 +164,26 @@ footer {
   color: #fff;
   font-size: 1.5rem;
   height: 3rem;
-  margin-bottom: 1rem;
   text-align: center;
   vertical-align: middle;
-  width: 100%;
+  margin: 0 auto 1rem;
 
-  a {
-    color: #fff;
-    font-weight: 400;
-    text-decoration: underline;
+  p {
+    position: relative;
+    text-align: center;
+    width: 98%;
+    margin: auto;
 
-    &:hover {
+    a {
       color: #fff;
       font-weight: 400;
-      text-decoration: none;
+      text-decoration: underline;
+
+      &:hover {
+        color: #fff;
+        font-weight: 400;
+        text-decoration: none;
+      }
     }
   }
 }
