@@ -1,11 +1,10 @@
 extends layout
 
 block layout-content
-  header(class="jumbotron bg-primary")
+  header(class="jumbotron jumbotron-fluid bg-primary")
     h1 #{h1Text}
     p #{pText}
     img(src="images/blocks.png", alt="vector blocks stacked inside bigger block")
-  //- form(method='post', enctype="multipart/form-data", action='/submit-form')
   form(method="post", enctype="multipart/form-data", action="/processed-images")
     section(class="form-group")
       div(id="upload-div")

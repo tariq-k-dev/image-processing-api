@@ -10,12 +10,22 @@ var index_1 = __importDefault(require("./routes/index"));
 var app = express_1.default();
 var PORT = process.env.PORT || 3000;
 var HOST = 'http://localhost:';
+// serve static files and caching
+// https://expressjs.com/en/api.html#example.of.express.static
+var options = {
+    etag: true,
+    maxAge: '7d',
+    redirect: false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setHeaders: function (res, path, stat) {
+        res.set('x-timestamp', Date.now().toLocaleString());
+    },
+};
+app.use(express_1.default.static('dist', options));
+app.use(index_1.default);
 app.use(serve_favicon_1.default(path_1.default.resolve('dist', 'images', 'favicon.ico')));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use(express_1.default.static('dist'));
-app.use('/images', express_1.default.static('images'));
-app.use(index_1.default);
 app.set('../views', path_1.default.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 app.listen(PORT, function () {

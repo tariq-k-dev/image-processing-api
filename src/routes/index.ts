@@ -13,14 +13,6 @@ let folderName = '';
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // clear output-images folder for each new image that is input
-    try {
-      fs.rmdirSync('dist/output-images', { recursive: true });
-      fs.mkdirSync('dist/output-images', { recursive: true });
-    } catch (err) {
-      console.error('Error deleting output-images folder:', err);
-    }
-
     folderName = file.originalname.split('.')[0];
     const folderPath = path.join('dist', 'output-images', folderName);
 
@@ -48,27 +40,23 @@ routes.get('/', (req, res) => {
 });
 
 // route to display resized images
-routes.post(
-  '/processed-images',
-  upload.single('imageupload'),
-  async (req, res) => {
-    let resizedImgs: string[] | null = [];
+routes.post('/processed-images', upload.single('imageupload'), (req, res) => {
+  let resizedImgs: string[] | null = [];
 
-    try {
-      resizedImgs = await imgResize(imgUrl);
-    } catch (err) {
-      console.error('Image resizing error:', err);
-    }
-
-    res.render('processed-images', {
-      title: 'Image Sizer',
-      h1Text: 'Web Image Size Generator',
-      pText:
-        'Upload and resize an image to get the most common sizes used for the web',
-      imgUrls: resizedImgs,
-    });
+  try {
+    resizedImgs = imgResize(imgUrl);
+  } catch (err) {
+    console.error('Image resizing error:', err);
   }
-);
+
+  res.render('processed-images', {
+    title: 'Image Sizer',
+    h1Text: 'Web Image Size Generator',
+    pText:
+      'Upload and resize an image to get the most common sizes used for the web',
+    imgUrls: resizedImgs,
+  });
+});
 
 // route to handle zip download of resized images
 routes.get('/zip-download', async (req, res) => {

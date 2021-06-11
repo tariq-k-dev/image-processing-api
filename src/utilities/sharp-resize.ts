@@ -27,7 +27,35 @@ const imgResize = (location: string): string[] => {
   let outputFile = '';
   const imgSizes: string[] = [];
 
-  if (fs.existsSync(path.join('dist', 'output-images', nameOnly))) {
+  // check if images already exist, if so use them and do not resize again
+  const pathToTestImg = path.join(
+    'dist',
+    'output-images',
+    nameOnly,
+    nameOnly + '_2500.' + fileExt
+  );
+  const testImgExist = fs.existsSync(pathToTestImg);
+
+  if (testImgExist) {
+    const images = fs.readdirSync(path.join('dist', 'output-images', nameOnly));
+    // sort images by size
+    const sortedImgs = images.sort((img1, img2): number => {
+      const size1 = parseInt(img1.split('_')[1]);
+      const size2 = parseInt(img2.split('_')[1]);
+
+      if (isNaN(size1) || size1 < size2) return -1;
+      else return 0;
+    });
+
+    sortedImgs.forEach((image) => {
+      const imgPath = path.join('output-images', nameOnly, image);
+
+      // exclude the original image
+      if (image !== fileName) {
+        imgSizes.push(imgPath);
+      }
+    });
+  } else {
     // Resize original image
     try {
       resizedFile = nameOnly + '_100.' + fileExt;

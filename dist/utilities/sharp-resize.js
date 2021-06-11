@@ -29,7 +29,29 @@ var imgResize = function (location) {
     var resizedFile = '';
     var outputFile = '';
     var imgSizes = [];
-    if (fs_1.default.existsSync(path_1.default.join('dist', 'output-images', nameOnly))) {
+    // check if images already exist, if so use them and do not resize again
+    var pathToTestImg = path_1.default.join('dist', 'output-images', nameOnly, nameOnly + '_2500.' + fileExt);
+    var testImgExist = fs_1.default.existsSync(pathToTestImg);
+    if (testImgExist) {
+        var images = fs_1.default.readdirSync(path_1.default.join('dist', 'output-images', nameOnly));
+        // sort images by size
+        var sortedImgs = images.sort(function (img1, img2) {
+            var size1 = parseInt(img1.split('_')[1]);
+            var size2 = parseInt(img2.split('_')[1]);
+            if (isNaN(size1) || size1 < size2)
+                return -1;
+            else
+                return 0;
+        });
+        sortedImgs.forEach(function (image) {
+            var imgPath = path_1.default.join('output-images', nameOnly, image);
+            // exclude the original image
+            if (image !== fileName) {
+                imgSizes.push(imgPath);
+            }
+        });
+    }
+    else {
         // Resize original image
         try {
             resizedFile = nameOnly + '_100.' + fileExt;
