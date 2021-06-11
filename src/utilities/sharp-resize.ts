@@ -28,43 +28,16 @@ const imgResize = (location: string): string[] => {
   let outputFile = '';
   const imgSizes: string[] = [];
 
-  // check if images already exist, if so use them and do not resize again
-  // const pathToTestImg = path.join(
-  //   'dist',
-  //   'output-images',
-  //   nameOnly,
-  //   nameOnly + '_2500.' + fileExt
-  // );
-  // const testImgExist = fs.existsSync(pathToTestImg);
-
-  // if (testImgExist) {
-  //   const images = fs.readdirSync(path.join('dist', 'output-images', nameOnly));
-  //   // sort images by size
-  //   const sortedImgs = images.sort((img1, img2): number => {
-  //     const size1 = parseInt(img1.split('_')[1]);
-  //     const size2 = parseInt(img2.split('_')[1]);
-
-  //     if (isNaN(size1) || size1 < size2) return -1;
-  //     else return 0;
-  //   });
-
-  //   sortedImgs.forEach((image) => {
-  //     const imgPath = path.join('output-images', nameOnly, image);
-
-  //     // exclude the original image
-  //     if (image !== fileName) {
-  //       imgSizes.push(imgPath);
-  //     }
-  //   });
-  // }
-
+  // Check to see if images already exist in localStorage
   if (localStorage.getItem(fileName) !== null) {
     const storedImages = localStorage;
 
     for (const img of Object.values(storedImages)) {
-      if (img !== fileName) imgSizes.push(img as unknown as string);
+      if (img !== fileName && String(img).includes(nameOnly))
+        imgSizes.push(img as unknown as string);
     }
   } else {
+    // Add fileName to localStorage to use for search for processed images
     localStorage.setItem(fileName, fileName);
     // Resize original image
     try {
