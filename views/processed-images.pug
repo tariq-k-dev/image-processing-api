@@ -12,6 +12,17 @@ block layout-content
   div(class="center")
     ul(id="generated-images")
       each imgUrl in imgUrls
+        - const imgName = imgUrl.split('/').slice(-1)[0].split('.')[0]
+        - const dataTarget = '#' + imgName
         li
-          img(src=imgUrl alt=imgUrl)
-          p #{imgUrl.includes('\\') ? imgUrl.split('\\').slice(-1) : imgUrl.split('/').slice(-1)}
+          button(type="button" class="btn btn-primary" data-toggle="modal" data-target=dataTarget)
+            img(class="max-img-size" src=imgUrl alt=imgName)
+          div(class="modal fade" id=imgName tabindex="-1" aria-label=imgName aria-hidden="true")
+            div(class="modal-dialog modal-dialog-centered modal-dialog-scrollable")
+              div(class="modal-content")
+                div(class="modal-header")
+                  p #{imgName}
+                  button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                    span(aria-hidden="true") &times;
+                div(class="modal-body")
+                  img(src=imgUrl alt=imgUrl)
