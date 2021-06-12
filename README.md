@@ -1,3 +1,7 @@
+---
+typora-root-url: ./dist/images/Resized-Images.png
+---
+
 # [API Image Processing App](https://image-sizer.herokuapp.com/)
 
 An app that can be used to upload an image an have it processed to multiple sizes that could be useful for web page images.  After the image is processed and uploaded, the newly generated images can be downloaded along with the original image as a zip file.
@@ -14,6 +18,6 @@ This project is deployed to Heroku and can be found at: [https://image-sizer.her
 
 The first screenshot below shows some of the smaller image sizes generated after uploading an image.  The second screenshot shows the modal after clicking on the resized image.
 
-![Resized-Images](/Users/tariq/Desktop/Resized-Images.png)
+![Resized-Images](dist/images/Resized-Images.png)
 
-![Modal](/Users/tariq/Desktop/Modal.png)
+![Modal](dist/images/Modal.png)
