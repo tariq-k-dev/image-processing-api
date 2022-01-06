@@ -65,8 +65,8 @@ describe('Test endpoint response', async () => {
   });
 
   // image processing route
-  it('get /processed-images with status of 200', async () => {
-    await request.post('/processed-images').expect(200);
+  it('get /processed-images with status of 200', () => {
+    request.post('/processed-images').expect(200);
   });
 
   it('/processed-image generated The-Subway-Cave-Utah_100.jpg', () => {
@@ -77,7 +77,7 @@ describe('Test endpoint response', async () => {
           'dist',
           'output-images',
           'The-Subway-Cave-Utah',
-          'The-Subway-Cave-Utah_100.jpg'
+          'The-Subway-Cave-Utah_125.jpg'
         )
       )
     ).toBeTruthy();
@@ -110,20 +110,20 @@ describe('Test endpoint response', async () => {
     ).toBeTruthy();
   });
 
-  it('/processed-image generated The-Subway-Cave-Utah_750.jpg', () => {
+  it('/processed-image generated The-Subway-Cave-Utah_800.jpg', () => {
     expect(
       fs.existsSync(
         path.join(
           'dist',
           'output-images',
           'The-Subway-Cave-Utah',
-          'The-Subway-Cave-Utah_750.jpg'
+          'The-Subway-Cave-Utah_800.jpg'
         )
       )
     ).toBeTruthy();
   });
 
-  it('/processed-image generated The-Subway-Cave-Utah_1000.jpg', () => {
+  it('/processed-image generated The-Subway-Cave-Utah_1080.jpg', () => {
     // expect(imagesArr.length).toEqual(7);
     expect(
       fs.existsSync(
@@ -131,26 +131,26 @@ describe('Test endpoint response', async () => {
           'dist',
           'output-images',
           'The-Subway-Cave-Utah',
-          'The-Subway-Cave-Utah_1000.jpg'
+          'The-Subway-Cave-Utah_1080.jpg'
         )
       )
     ).toBeTruthy();
   });
 
-  it('/processed-image generated The-Subway-Cave-Utah_1500.jpg', () => {
+  it('/processed-image generated The-Subway-Cave-Utah_1280.jpg', () => {
     expect(
       fs.existsSync(
         path.join(
           'dist',
           'output-images',
           'The-Subway-Cave-Utah',
-          'The-Subway-Cave-Utah_1500.jpg'
+          'The-Subway-Cave-Utah_1280.jpg'
         )
       )
     ).toBeTruthy();
   });
 
-  it('/processed-image generated The-Subway-Cave-Utah_2500.jpg', () => {
+  it('/processed-image generated The-Subway-Cave-Utah_1920.jpg', () => {
     // expect(imagesArr.length).toEqual(7);
     expect(
       fs.existsSync(
@@ -158,7 +158,7 @@ describe('Test endpoint response', async () => {
           'dist',
           'output-images',
           'The-Subway-Cave-Utah',
-          'The-Subway-Cave-Utah_2500.jpg'
+          'The-Subway-Cave-Utah_1920.jpg'
         )
       )
     ).toBeTruthy();

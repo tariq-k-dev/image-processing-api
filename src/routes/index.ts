@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
     const folderPath = path.join('dist', 'output-images', folderName);
 
     if (!fs.existsSync(folderPath)) {
-      fs.mkdirSync(folderPath);
+      fs.mkdirSync(folderPath, { recursive: true });
     }
     cb(null, folderPath);
 
@@ -45,17 +45,21 @@ routes.post('/processed-images', upload.single('imageupload'), (req, res) => {
 
   try {
     resizedImgs = imgResize(imgUrl);
+
+    if (resizedImgs.length === 7) {
+      setTimeout(() => {
+        res.render('processed-images', {
+          title: 'Image Sizer',
+          h1Text: 'Web Image Size Generator',
+          pText:
+            'Upload and resize an image to get the most common sizes used for the web',
+          imgUrls: resizedImgs,
+        });
+      }, 600);
+    }
   } catch (err) {
     console.error('Image resizing error:', err);
   }
-
-  res.render('processed-images', {
-    title: 'Image Sizer',
-    h1Text: 'Web Image Size Generator',
-    pText:
-      'Upload and resize an image to get the most common sizes used for the web',
-    imgUrls: resizedImgs,
-  });
 });
 
 // route to handle zip download of resized images

@@ -85,19 +85,12 @@ describe('Test endpoint response', function () { return __awaiter(void 0, void 0
             });
         }); });
         // image processing route
-        it('get /processed-images with status of 200', function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, request.post('/processed-images').expect(200)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
+        it('get /processed-images with status of 200', function () {
+            request.post('/processed-images').expect(200);
+        });
         it('/processed-image generated The-Subway-Cave-Utah_100.jpg', function () {
             // expect(imagesArr.length).toEqual(7);
-            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_100.jpg'))).toBeTruthy();
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_125.jpg'))).toBeTruthy();
         });
         it('/processed-image generated The-Subway-Cave-Utah_300.jpg', function () {
             expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_300.jpg'))).toBeTruthy();
@@ -106,19 +99,19 @@ describe('Test endpoint response', function () { return __awaiter(void 0, void 0
             // expect(imagesArr.length).toEqual(7);
             expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_500.jpg'))).toBeTruthy();
         });
-        it('/processed-image generated The-Subway-Cave-Utah_750.jpg', function () {
-            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_750.jpg'))).toBeTruthy();
+        it('/processed-image generated The-Subway-Cave-Utah_800.jpg', function () {
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_800.jpg'))).toBeTruthy();
         });
-        it('/processed-image generated The-Subway-Cave-Utah_1000.jpg', function () {
+        it('/processed-image generated The-Subway-Cave-Utah_1080.jpg', function () {
             // expect(imagesArr.length).toEqual(7);
-            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_1000.jpg'))).toBeTruthy();
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_1080.jpg'))).toBeTruthy();
         });
-        it('/processed-image generated The-Subway-Cave-Utah_1500.jpg', function () {
-            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_1500.jpg'))).toBeTruthy();
+        it('/processed-image generated The-Subway-Cave-Utah_1280.jpg', function () {
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_1280.jpg'))).toBeTruthy();
         });
-        it('/processed-image generated The-Subway-Cave-Utah_2500.jpg', function () {
+        it('/processed-image generated The-Subway-Cave-Utah_1920.jpg', function () {
             // expect(imagesArr.length).toEqual(7);
-            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_2500.jpg'))).toBeTruthy();
+            expect(fs_1.default.existsSync(path_1.default.join('dist', 'output-images', 'The-Subway-Cave-Utah', 'The-Subway-Cave-Utah_1920.jpg'))).toBeTruthy();
         });
         return [2 /*return*/];
     });

@@ -54,7 +54,7 @@ var storage = multer_1.default.diskStorage({
         folderName = file.originalname.split('.')[0];
         var folderPath = path_1.default.join('dist', 'output-images', folderName);
         if (!fs_1.default.existsSync(folderPath)) {
-            fs_1.default.mkdirSync(folderPath);
+            fs_1.default.mkdirSync(folderPath, { recursive: true });
         }
         cb(null, folderPath);
         imgUrl = path_1.default.join(folderPath, file.originalname);
@@ -77,16 +77,20 @@ routes.post('/processed-images', upload.single('imageupload'), function (req, re
     var resizedImgs = [];
     try {
         resizedImgs = sharp_resize_1.default(imgUrl);
+        if (resizedImgs.length === 7) {
+            setTimeout(function () {
+                res.render('processed-images', {
+                    title: 'Image Sizer',
+                    h1Text: 'Web Image Size Generator',
+                    pText: 'Upload and resize an image to get the most common sizes used for the web',
+                    imgUrls: resizedImgs,
+                });
+            }, 600);
+        }
     }
     catch (err) {
         console.error('Image resizing error:', err);
     }
-    res.render('processed-images', {
-        title: 'Image Sizer',
-        h1Text: 'Web Image Size Generator',
-        pText: 'Upload and resize an image to get the most common sizes used for the web',
-        imgUrls: resizedImgs,
-    });
 });
 // route to handle zip download of resized images
 routes.get('/zip-download', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
