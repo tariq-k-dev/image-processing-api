@@ -10,7 +10,7 @@
     "prettier": "prettier --config .prettierrc src/**/*.ts --write",
     "build": "npx tsc",
     "jasmine": "jasmine",
-    "test": "npm run build && npm run jasmine"
+    "test": "snyk test && npm run build && npm run jasmine"
   },
   "repository": {
     "type": "git",
@@ -62,6 +62,6 @@
     "sharp": "^0.29.3"
   },
   "engines": {
-    "node": "14.x"
+    "node": ">=14.x"
   }
 }
