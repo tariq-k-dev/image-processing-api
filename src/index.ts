@@ -24,11 +24,8 @@ const limiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-// apply rate limiter to all requests
-app.use(limiter);
-
-app.use(express.static('dist'));
-app.use(routes);
+app.use(limiter, express.static('dist'));
+app.use(limiter, routes);
 
 app.listen(PORT, () => {
   console.log(`Listening at ${HOST + PORT}`);
