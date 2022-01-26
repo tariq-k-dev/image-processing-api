@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import favicon from 'serve-favicon';
 import routes from './routes/index';
+import rateLimit from 'express-rate-limit';
 
 const app = express();
 const PORT = (process.env.PORT as unknown as number) || 3000;
@@ -14,6 +15,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('../views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
+
+// set up rate limiter: maximum of five requests per minute
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+// apply rate limiter to all requests
+app.use(limiter);
 
 app.use(express.static('dist'));
 app.use(routes);
