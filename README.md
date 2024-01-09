@@ -10,8 +10,6 @@ This repo can be cloned and custom image sizes or other processing affects offer
 
 The Node.js scripts that exist in the package.json file include: `npm run lint` for using eslint for code linting; `npm run build` to use TypeScript to build the `dist` production folder, `npm run prettier` to format files; `npm run dev` for starting the development server with Nodemon; `npm start` to use node to run the `index.js` file found in the `/dist` production build folder; `npm run test` will do a production build, and runs the Jasmine Unit Tests.  The main focus of the tests is to verify API routes return HTTP status of 200, and verify generated test images.
 
-This project is deployed to Heroku and can be found at: [https://image-sizer.herokuapp.com/](https://image-sizer.herokuapp.com/).
-
 The first screenshot below shows some of the smaller image sizes generated after uploading an image.  The second screenshot shows the modal after clicking on the resized image.
 
 ![Resized-Images](dist/images/Resized-Images.png)
