@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/tariq-k-dev/image-processing-api#readme",
   "devDependencies": {
-    "@types/adm-zip": "^0.4.34",
+    "@types/adm-zip": "^0.5.5",
     "@types/express": "^4.17.13",
     "@types/got": "^9.6.12",
     "@types/jasmine": "^5.1.4",
