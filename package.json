@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "adm-zip": "^0.5.9",
-    "express": "^4.17.2",
+    "express": "^5.1.0",
     "express-rate-limit": "^7.4.0",
     "jasmine": "^5.3.0",
     "jasmine-spec-reporter": "^7.0.0",
