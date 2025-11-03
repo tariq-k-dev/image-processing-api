@@ -53,7 +53,7 @@
   "dependencies": {
     "adm-zip": "^0.5.9",
     "express": "^5.1.0",
-    "express-rate-limit": "^7.4.0",
+    "express-rate-limit": "^8.2.1",
     "jasmine": "^5.3.0",
     "jasmine-spec-reporter": "^7.0.0",
     "multer": "^2.0.0",
