@@ -18,8 +18,8 @@ importers:
         specifier: ^7.4.0
         version: 7.5.1(express@5.3.0(supports-color@5.5.0))
       jasmine:
-        specifier: ^5.3.0
-        version: 5.13.0
+        specifier: ^7.0.0
+        version: 7.0.0
       jasmine-spec-reporter:
         specifier: ^7.0.0
         version: 7.0.0
@@ -49,8 +49,8 @@ importers:
         specifier: ^9.6.12
         version: 9.6.12
       '@types/jasmine':
-        specifier: ^5.1.4
-        version: 5.1.15
+        specifier: ^7.0.0
+        version: 7.0.0
       '@types/multer':
         specifier: ^1.4.7
         version: 1.4.13
@@ -348,6 +348,9 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
+  '@jasminejs/reporters@1.1.0':
+    resolution: {integrity: sha512-JIrlfaf9c6m0+GtBAgZdcFB6RIRbFBbXxZDZ0WOewq4cLIEcVKEe0RgI1FA77M39FNzeSMTAm+LK/kcQVIkfGQ==}
+
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
     engines: {node: '>=6.0.0'}
@@ -424,8 +427,8 @@ packages:
   '@types/http-errors@2.0.5':
     resolution: {integrity: sha512-r8Tayk8HJnX0FztbZN7oVqGccWgw98T/0neJphO91KkmOzug1KkofZURD4UaD5uH8AqcFLfdPErnBod0u71/qg==}
 
-  '@types/jasmine@5.1.15':
-    resolution: {integrity: sha512-ZAC8KjmV2MJxbNTrwXFN+HKeajpXQZp6KpPiR6Aa4XvaEnjP6qh23lL/Rqb7AYzlp3h/rcwDrQ7Gg7q28cQTQg==}
+  '@types/jasmine@7.0.0':
+    resolution: {integrity: sha512-6yNx9BsBSKiXO2yqLXs/GZDuD58Gkn6Ty26254FFOuw6B4XU5Xq8mAR0xFy8zHgAhqQd++y41fSJ8BdwrWXhqQ==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -1056,14 +1059,14 @@ packages:
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
-  jasmine-core@5.13.0:
-    resolution: {integrity: sha512-vsYjfh7lyqvZX5QgqKc4YH8phs7g96Z8bsdIFNEU3VqXhlHaq+vov/Fgn/sr6MiUczdZkyXRC3TX369Ll4Nzbw==}
+  jasmine-core@7.0.2:
+    resolution: {integrity: sha512-YMVijt84KPQQFm1db1AQAxTXfq0k3wU06OkepLViljURFqiRQ7EYYX2eUAshhUv9fA9t1E2N65GrdqvupA9VPQ==}
 
   jasmine-spec-reporter@7.0.0:
     resolution: {integrity: sha512-OtC7JRasiTcjsaCBPtMO0Tl8glCejM4J4/dNuOJdA8lBjz4PmWjYQ6pzb0uzpBNAWJMDudYuj9OdXJWqM2QTJg==}
 
-  jasmine@5.13.0:
-    resolution: {integrity: sha512-oLCXIhEb5e0zzjn9GyuvcuisvLBwUjmgz7a0RNGWKwQtJCDld4m+vwKUpAIJVLB5vbmQFdtKhT86/tIZlJ5gYw==}
+  jasmine@7.0.0:
+    resolution: {integrity: sha512-rnjiyg1LAhFZMoyU8ei/Wqyvti5oCzFhW7ZtkD6o+CSx3LpU9aYurPrh5BKyX3coGvmdEVYPC2HYh1rrBvZoWg==}
     hasBin: true
 
   js-stringify@1.0.2:
@@ -1752,6 +1755,8 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
+  '@jasminejs/reporters@1.1.0': {}
+
   '@jridgewell/resolve-uri@3.1.2': {}
 
   '@jridgewell/sourcemap-codec@1.6.0': {}
@@ -1828,7 +1833,7 @@ snapshots:
 
   '@types/http-errors@2.0.5': {}
 
-  '@types/jasmine@5.1.15': {}
+  '@types/jasmine@7.0.0': {}
 
   '@types/json-schema@7.0.15': {}
 
@@ -2518,16 +2523,17 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  jasmine-core@5.13.0: {}
+  jasmine-core@7.0.2: {}
 
   jasmine-spec-reporter@7.0.0:
     dependencies:
       colors: 1.4.0
 
-  jasmine@5.13.0:
+  jasmine@7.0.0:
     dependencies:
+      '@jasminejs/reporters': 1.1.0
       glob: 10.5.0
-      jasmine-core: 5.13.0
+      jasmine-core: 7.0.2
 
   js-stringify@1.0.2: {}
 
