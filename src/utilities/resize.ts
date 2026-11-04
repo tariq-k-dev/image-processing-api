@@ -3,9 +3,7 @@
 import fs from 'fs';
 import got from 'got';
 import sharp from 'sharp';
-const sharpStream = sharp({
-  failOnError: false,
-});
+const sharpStream = sharp();
 
 const promises = [];
 

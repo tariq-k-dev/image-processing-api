@@ -6,10 +6,10 @@ import imgResize from '../utilities/sharp-resize';
 
 const request = supertest(app);
 
-describe('Test endpoint response', async () => {
+describe('Test endpoint response', () => {
   beforeAll(() => {
     // empty dist/output-images folder before test
-    fs.rmdirSync('dist/output-images', { recursive: true });
+    fs.rmSync('dist/output-images', { recursive: true, force: true });
 
     // Create The-Subway-Cave-Utah folder for the test
     try {
